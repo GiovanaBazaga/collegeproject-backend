@@ -5,6 +5,9 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 
+import com.auth0.jwt.exceptions.TokenExpiredException;
+import com.faculdade.projeto.infra.exception.TokenExpException;
+import com.faculdade.projeto.infra.exception.UnauthorizedException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -43,8 +46,10 @@ public class TokenService {
 					.build()
 					.verify(token)
 					.getSubject();
+		} catch(TokenExpiredException tokenExpiredException) {
+			throw new TokenExpException();
 		} catch(JWTVerificationException exception) {
-			return "";
+			throw new UnauthorizedException();
 		}
 	}
 	
