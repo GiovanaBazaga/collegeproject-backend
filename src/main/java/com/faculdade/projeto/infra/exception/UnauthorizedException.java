@@ -3,7 +3,9 @@ package com.faculdade.projeto.infra.exception;
 import org.springframework.http.HttpStatus;
 
 public class UnauthorizedException extends ApiErrorException {
-    private static final HttpStatus HTTP_STATUS = HttpStatus.UNAUTHORIZED;
+	private static final long serialVersionUID = 1L;
+
+	private static final HttpStatus HTTP_STATUS = HttpStatus.UNAUTHORIZED;
 
     private String message;
 
